@@ -1,6 +1,7 @@
 import React from 'react';
 import { Translation } from '../types';
 import { Phone, ArrowRight, Shield } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface HeroProps {
   t: Translation;
@@ -14,7 +15,15 @@ const Hero: React.FC<HeroProps> = ({ t, lang }) => {
     <section id="home" className="relative bg-secondary-900 text-white overflow-hidden min-h-[85vh] flex items-center">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
+        <motion.img 
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ 
+            duration: 15, 
+            repeat: Infinity, 
+            repeatType: "reverse", 
+            ease: "easeInOut" 
+          }}
           src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070" 
           alt="Security Systems and Technology" 
           className="w-full h-full object-cover opacity-20"
@@ -24,22 +33,42 @@ const Hero: React.FC<HeroProps> = ({ t, lang }) => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600/20 border border-primary-500/30 text-primary-400 mb-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600/20 border border-primary-500/30 text-primary-400 mb-6"
+          >
             <Shield size={16} />
             <span className="text-sm font-medium tracking-wide uppercase">
               {lang === 'en' ? 'Trusted Security Partner' : 'شريكك الأمني الموثوق'}
             </span>
-          </div>
+          </motion.div>
           
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400"
+          >
             {t.hero.title}
-          </h1>
+          </motion.h1>
           
-          <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl">
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl"
+          >
             {t.hero.subtitle}
-          </p>
+          </motion.p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
             <a 
               href="tel:01030417663" 
               className="flex items-center justify-center gap-3 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg shadow-primary-600/30"
@@ -55,7 +84,7 @@ const Hero: React.FC<HeroProps> = ({ t, lang }) => {
               <span>{t.hero.cta}</span>
               {isRtl ? <ArrowRight className="rotate-180" size={20} /> : <ArrowRight size={20} />}
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

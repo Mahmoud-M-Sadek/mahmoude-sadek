@@ -1,6 +1,7 @@
 import React from 'react';
 import { Translation, Language } from '../types';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ContactProps {
   t: Translation;
@@ -12,17 +13,35 @@ const Contact: React.FC<ContactProps> = ({ t, lang }) => {
     <section id="contact" className="py-20 bg-slate-50 dark:bg-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4"
+          >
             {t.contact.title}
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto"
+          >
             {t.contact.subtitle}
-          </p>
+          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
             <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
                 Information System Security
@@ -80,10 +99,16 @@ const Contact: React.FC<ContactProps> = ({ t, lang }) => {
                 className="opacity-80 hover:opacity-100 transition-opacity"
               ></iframe>
             </div>
-          </div>
+          </motion.div>
 
           {/* Form */}
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700"
+          >
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
@@ -123,7 +148,7 @@ const Contact: React.FC<ContactProps> = ({ t, lang }) => {
                 {lang === 'ar' ? <Send className="rotate-180" size={18} /> : <Send size={18} />}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
